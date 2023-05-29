@@ -1,21 +1,24 @@
-name: Deploy Private GitHub repository to cPanel
+name: "🚀 Upload to FTP"
 on:
   push:
     branches:
-      - main
+    - main
 jobs:
-  FTP-Deploy-Action:
+  web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
-        with:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+      with:
+          lfs: true
           fetch-depth: 2
-      - name: 📂 Sync folders and files to the server
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        exclude: "[**/.git*/**, **/node_modules/**, **/build/, .README.MD, .gitignore]"
+        protocol: ftps
+        log-level: verbose
