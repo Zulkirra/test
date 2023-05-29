@@ -12,6 +12,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: lostlocks.com.au
-        username: ${{ secrets.FTP_USERNAME }}
+        username: zackerycassar
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
