@@ -16,6 +16,6 @@ jobs:
       - name: Update files on FTP server
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          ftp-server: ftps://ftp.lunaris.com.au
+          ftp-server: ftpes://ftp.lunaris.com.au
           ftp-username: ${{ secrets.FTP_USERNAME }}
           ftp-password: ${{ secrets.FTP_PASSWORD }}
