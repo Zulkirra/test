@@ -16,6 +16,6 @@ jobs:
       - name: Update files on FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: ftpes://ftp.lostlocks.com.au
+          server: ftp.lostlocks.com.au
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
