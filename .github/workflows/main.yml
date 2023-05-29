@@ -8,17 +8,14 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2.3.2
-      with:
+      - uses: actions/checkout@v2
+        with:
           lfs: true
-          fetch-depth: 2
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        exclude: "[**/.git*/**, **/node_modules/**, **/build/, .README.MD, .gitignore]"
-        protocol: ftps
-        log-level: verbose
+          fetch-depth: 0
+
+      - name: Update files on FTP server
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ftps://ftp.lunaris.com.au
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
